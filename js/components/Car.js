@@ -1,5 +1,6 @@
 class Car {
    constructor(tank, consumption) {
+      this.ok = true;
       this.engine = false;
       this.mileage = 0;
       this.tank = tank;                 // litres
@@ -7,10 +8,24 @@ class Car {
    }
 
    turnOn() {
+      if (!this.ok) {
+         console.log('Masina neveikia...');
+         return false;
+      }
+      if (this.engine) {
+         this.ok = false;
+         this.engine = false;
+         console.log('Sveikinu, sugadinai starteri!');
+         return false;
+      }
       this.engine = true;
       console.log('Varyklis ijungtas!');
    }
    turnOff() {
+      if (!this.engine) {
+         console.log('Isjungto varyklio dar karta isjungti nemoku...');
+         return false;
+      }
       this.engine = false;
       console.log('Varyklis isjungtas!');
    }
